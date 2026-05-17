@@ -1,0 +1,17 @@
+# Local-only files, not shipped.
+debug/
+*.log
+.DS_Store
+Thumbs.db
+
+# Worker tooling
+worker/node_modules/
+worker/.wrangler/
+worker/dist/
+worker/.dev.vars
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

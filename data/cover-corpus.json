@@ -1,0 +1,407 @@
+[
+  {
+    "id": 1,
+    "keywords": ["violin", "bowing", "scales", "memorize", "remember", "direction"],
+    "topic": "violin",
+    "title": "Memorizing bowing direction",
+    "user_prompt": "How do I memorize bowing direction in violin scales?",
+    "response": "Great question! Bowing direction in scales follows a few reliable patterns. For a typical two-octave scale ascending and descending in slurred groups, the bow direction is determined by the slur grouping and the number of notes per beat. A common rule: down-bow on the first note of the bar and on strong beats. Try writing the bowings into your sheet music with a soft pencil for the first few practice sessions. Your hand will remember after about a week. Also: practice the scale very slowly with exaggerated arm motion before speeding it up. Muscle memory for bow direction is built through repetition with attention, not raw repetition."
+  },
+  {
+    "id": 2,
+    "keywords": ["audition", "nervous", "nerves", "violin", "perform", "anxiety"],
+    "topic": "violin",
+    "title": "Audition nerves",
+    "user_prompt": "I have a violin audition next week and I'm really nervous. Any tips?",
+    "response": "Audition nerves are completely normal and even useful in small doses. A few things that help: practice your audition piece in front of stuffed animals, a wall, a friend, your parents, and a recording device. Each context teaches your brain that performing is safe. The day of: eat something with protein, avoid too much sugar, drink water but not so much that you need the bathroom. Just before going in, take three slow breaths through your nose and exhale longer than you inhaled. If your bow shakes, slow your bow speed slightly and put more weight on it. Judges expect nerves; they listen past them."
+  },
+  {
+    "id": 3,
+    "keywords": ["suzuki", "traditional", "method", "violin", "difference"],
+    "topic": "violin",
+    "title": "Suzuki vs traditional",
+    "user_prompt": "What is the difference between Suzuki and traditional violin method?",
+    "response": "Suzuki and traditional methods overlap a lot but emphasize different starting points. Suzuki was designed by Shinichi Suzuki around the idea that children learn music the same way they learn language: by listening first, then imitating, then reading. Beginners learn pieces by ear from recordings before reading sheet music. Traditional methods front-load sheet music reading and technical exercises like Wohlfahrt or Sevcik. Neither is better. Many serious players grew up Suzuki and switched into traditional repertoire by their teens. The most important factor is the teacher, not the method."
+  },
+  {
+    "id": 4,
+    "keywords": ["spiccato", "bowing", "violin", "technique"],
+    "topic": "violin",
+    "title": "What is spiccato",
+    "user_prompt": "What does spiccato mean?",
+    "response": "Spiccato is a violin bow stroke where the bow bounces lightly off the string for each note. Unlike legato (smooth, connected notes) or staccato (short but on-the-string), spiccato has a controlled airborne motion at the bottom of each stroke. It produces a crisp, separated sound common in fast classical passages. To practice it, find the sweet spot near the middle of the bow where the natural balance lets the bow bounce on its own. Start very slow with small motions. If the bow scrapes, you are pushing too hard. If it does not articulate, you are too high off the string."
+  },
+  {
+    "id": 5,
+    "keywords": ["scratchy", "string", "violin", "sound", "tone", "bow"],
+    "topic": "violin",
+    "title": "Scratchy E string",
+    "user_prompt": "Why does my E string sound scratchy?",
+    "response": "Scratchy E string usually comes from one of three things. First, too much bow pressure: the E string is the thinnest and most sensitive, so a little weight goes a long way. Try playing closer to the fingerboard and lightening up. Second, not enough rosin or old rosin: if your bow slides without grip, the sound becomes whistly or scratchy. Apply 6 to 10 strokes of rosin and test. Third, the bow is touching too close to the bridge for the bow speed you are using. Faster strokes can handle being closer to the bridge; slower strokes need to be closer to the fingerboard. Match those two and the tone clears up."
+  },
+  {
+    "id": 6,
+    "keywords": ["practice", "long", "violin", "daily", "hours"],
+    "topic": "violin",
+    "title": "Daily practice time",
+    "user_prompt": "How long should I practice violin each day at 14?",
+    "response": "For a serious 14 year old player aiming at strong technique and orchestra-level repertoire, around 60 to 90 minutes a day is typical and sustainable. Pre-conservatory students often do 2 to 3 hours, but that requires careful pacing to avoid injury. Quality matters more than duration. A focused 45 minutes beats a distracted 2 hours. Structure helps: 10 minutes scales, 15 minutes etudes, 20 minutes new piece, 10 minutes review pieces. Take a 5 minute break in the middle. If your fingers, wrist, or shoulder hurt, stop. Pain is information, not weakness."
+  },
+  {
+    "id": 7,
+    "keywords": ["etudes", "intermediate", "violin", "recommended"],
+    "topic": "violin",
+    "title": "Etudes for intermediate violin",
+    "user_prompt": "What are good etudes for intermediate violin?",
+    "response": "At the intermediate level, Wohlfahrt Op. 45 and Kayser Op. 20 are classics. They build position changes, double stops, and basic bow control. After those, Mazas Op. 36 books 1 and 2 introduce more musical phrasing alongside technique. Kreutzer 42 Studies is the next big step and is something most serious players work on for years. Pick one etude at a time, learn it slowly, and have your teacher write specific bowings and fingerings for the first few measures so you build good habits."
+  },
+  {
+    "id": 8,
+    "keywords": ["triplets", "count", "rhythm", "music"],
+    "topic": "violin",
+    "title": "Counting triplets",
+    "user_prompt": "How do I count triplets in music?",
+    "response": "Triplets are three notes played in the time of two. Most people count them as 'tri-pl-et' or '1-trip-let, 2-trip-let'. Each syllable gets one note of the triplet, evenly spaced. The trick is keeping the underlying beat steady. Tap your foot on each main beat and say the triplet word over the top. Practice with a metronome on a slow tempo, like 60 bpm, and play 'do-da-de' on each beat. If you can feel the foot tap and still hear the three even subdivisions, you have it."
+  },
+  {
+    "id": 9,
+    "keywords": ["vibrato", "violin", "tips", "technique"],
+    "topic": "violin",
+    "title": "Vibrato tips",
+    "user_prompt": "Any tips for vibrato?",
+    "response": "Vibrato is one of the longer techniques to develop. The motion comes from either the wrist, the arm, or a combination, and most players start with arm vibrato around 14 to 15. Before you add the oscillation, make sure your left hand is fully relaxed and your thumb is not gripping the neck. Practice the rolling motion without bowing first: place a finger on the string and rock it from the tip toward the palm, like polishing a tiny spot. Once that feels even, add the bow with a long, slow stroke. Speed comes later. Start at around 4 oscillations per second and work up."
+  },
+  {
+    "id": 10,
+    "keywords": ["major", "minor", "scale", "difference", "music", "theory"],
+    "topic": "music theory",
+    "title": "Major vs minor",
+    "user_prompt": "What is the difference between major and minor in music theory?",
+    "response": "Major and minor are the two most common scale qualities in Western music. The difference comes down to the third note of the scale. In a major scale, the third is a major third above the root (4 semitones). In a minor scale, the third is a minor third above the root (3 semitones). C major: C D E F G A B C. C natural minor: C D Eb F G Ab Bb C. Major tends to sound bright or happy and minor tends to sound dark or sad, though that is a generalization. Many famous pieces use minor scales: Beethoven 5th, Vivaldi Winter, Charlie Brown theme."
+  },
+  {
+    "id": 11,
+    "keywords": ["alto", "clef", "read"],
+    "topic": "music theory",
+    "title": "Reading alto clef",
+    "user_prompt": "How do I read alto clef?",
+    "response": "Alto clef is the C clef centered on the middle line. That middle line is middle C. From there, every line and space above and below follows the regular musical alphabet. The five lines from bottom to top are F A C E G. The four spaces are G B D F. Alto clef is mostly used by viola players. If you mostly read treble clef and need to read alto occasionally, a simple shortcut: a note on alto clef sounds one whole step lower than where the same shape would sit in treble clef. Use that as a check, not a crutch."
+  },
+  {
+    "id": 12,
+    "keywords": ["youtube", "violin", "channels", "tips", "learn"],
+    "topic": "violin",
+    "title": "Violin youtube channels",
+    "user_prompt": "What are the best youtube channels for violin tips?",
+    "response": "A few channels are widely recommended. TwoSet Violin is great for entertainment and motivation, plus they explain technique clearly between jokes. Violin Lounge by Zlata Brouwer covers a lot of intermediate technique with patient explanations. Beth's Violin Tutorials is good for very specific problems. Eddy Chen and Brett Yang's solo content is helpful when you want musicianship discussion. Avoid relying only on youtube though. A real teacher can see your posture and bow grip in ways a video cannot. Use youtube to supplement weekly lessons, not to replace them."
+  },
+
+  {
+    "id": 13,
+    "keywords": ["algebra", "solve", "equation", "math", "homework"],
+    "topic": "math",
+    "title": "Solving for x",
+    "user_prompt": "Help me solve for x in 3x + 7 = 22",
+    "response": "To solve 3x + 7 = 22, your goal is to get x by itself. First, subtract 7 from both sides: 3x + 7 - 7 = 22 - 7, which simplifies to 3x = 15. Then divide both sides by 3: 3x / 3 = 15 / 3, which gives x = 5. To check your work, plug 5 back into the original: 3(5) + 7 = 15 + 7 = 22. The equation balances, so x = 5 is correct. The general approach is: undo addition and subtraction first, then undo multiplication and division. This 'reverse order of operations' is the foundation of solving most linear equations."
+  },
+  {
+    "id": 14,
+    "keywords": ["photosynthesis", "plants", "biology", "explain"],
+    "topic": "science",
+    "title": "Photosynthesis",
+    "user_prompt": "Can you explain photosynthesis simply?",
+    "response": "Photosynthesis is how plants make their own food using sunlight. The process happens mainly in the leaves, inside structures called chloroplasts. Plants take in carbon dioxide from the air through tiny openings in their leaves called stomata. They absorb water from the soil through their roots. Sunlight provides the energy. Inside the leaf, a green pigment called chlorophyll captures the light energy and uses it to combine carbon dioxide and water into glucose (a sugar) and oxygen. The plant uses the glucose as food and releases the oxygen into the air. The simple equation is: 6CO2 + 6H2O + sunlight = C6H12O6 + 6O2."
+  },
+  {
+    "id": 15,
+    "keywords": ["world", "war", "wwi", "history", "start", "causes"],
+    "topic": "history",
+    "title": "Why WWI started",
+    "user_prompt": "Why did WWI start?",
+    "response": "World War One started in 1914 because of a combination of long-term tensions and a triggering event. Historians often summarize the causes with the acronym MAIN: Militarism, Alliances, Imperialism, and Nationalism. European powers had been racing to build bigger armies and navies. They were tangled in defensive alliances: Germany with Austria-Hungary and Italy on one side, France with Russia and later Britain on the other. They competed for colonies overseas. And nationalist movements were strong, especially in the Balkans. The trigger was the assassination of Archduke Franz Ferdinand of Austria by a Serbian nationalist in Sarajevo on June 28, 1914. Within weeks, the alliance system pulled most of Europe into war."
+  },
+  {
+    "id": 16,
+    "keywords": ["lab", "report", "format", "science", "write"],
+    "topic": "school",
+    "title": "Lab report format",
+    "user_prompt": "What is the format for a lab report?",
+    "response": "A standard lab report has these sections in order: Title, Abstract, Introduction, Materials, Procedure, Results, Discussion, Conclusion, References. The Title is a short specific description of what you tested. The Abstract is a one-paragraph summary covering all sections, written last even though it appears first. The Introduction states the hypothesis and gives background. Materials lists everything you used. Procedure describes steps in past tense and passive voice. Results presents data using tables and graphs, with brief captions. Discussion interprets the data and explains whether the hypothesis was supported. Conclusion restates the main finding in one or two sentences. References cites any sources you used."
+  },
+  {
+    "id": 17,
+    "keywords": ["thesis", "statement", "essay", "write", "english"],
+    "topic": "school",
+    "title": "Writing a thesis statement",
+    "user_prompt": "How do I write a thesis statement?",
+    "response": "A thesis statement is one or two sentences at the end of your introduction that tells the reader exactly what your essay will argue. A strong thesis is specific, debatable, and supportable. Specific: it focuses on a particular claim rather than a broad topic. Debatable: someone could reasonably disagree. Supportable: you can back it up with evidence from your sources. Example of weak: 'The Great Gatsby is about the American Dream.' Example of strong: 'In The Great Gatsby, Fitzgerald uses Gatsby's failure to argue that the American Dream is corrupted by the wealth it pursues.' Write a draft thesis early, then revise it once you have your evidence."
+  },
+  {
+    "id": 18,
+    "keywords": ["pythagorean", "theorem", "math", "geometry", "triangle"],
+    "topic": "math",
+    "title": "Pythagorean theorem",
+    "user_prompt": "What is the Pythagorean theorem?",
+    "response": "The Pythagorean theorem describes the relationship between the sides of a right triangle. It states that the square of the hypotenuse (the longest side, opposite the right angle) equals the sum of the squares of the other two sides. Written as a formula: a² + b² = c², where c is the hypotenuse. So if a triangle has legs of length 3 and 4, the hypotenuse is 5, because 3² + 4² = 9 + 16 = 25, and the square root of 25 is 5. It is named after Pythagoras, a Greek mathematician from the 6th century BC, though Babylonian mathematicians knew the relationship earlier."
+  },
+  {
+    "id": 19,
+    "keywords": ["mitosis", "cell", "division", "biology", "stages"],
+    "topic": "science",
+    "title": "Mitosis stages",
+    "user_prompt": "What are the stages of mitosis?",
+    "response": "Mitosis is how cells divide to produce two identical daughter cells, and it has four main stages: prophase, metaphase, anaphase, and telophase. Many teachers add interphase before and cytokinesis after. In prophase, chromosomes condense and become visible, and the nuclear envelope breaks down. In metaphase, chromosomes line up along the middle of the cell. In anaphase, sister chromatids are pulled apart toward opposite poles. In telophase, two new nuclear envelopes form around each set of chromosomes. Cytokinesis then pinches the cell into two. Mnemonic: I Picked My Apples Today (Interphase, Prophase, Metaphase, Anaphase, Telophase)."
+  },
+  {
+    "id": 20,
+    "keywords": ["french", "revolution", "history", "causes"],
+    "topic": "history",
+    "title": "French Revolution causes",
+    "user_prompt": "What caused the French Revolution?",
+    "response": "The French Revolution of 1789 had several interconnected causes. France was nearly bankrupt from supporting the American Revolution and decades of war. The tax system was deeply unequal: the First Estate (clergy) and Second Estate (nobility) paid little, while the Third Estate (everyone else) shouldered the burden. Enlightenment ideas about reason, equality, and government by consent had spread through pamphlets and salons. Poor harvests in 1788 spiked bread prices, hurting ordinary people. When King Louis XVI called the Estates-General in 1789 to deal with the debt crisis, the Third Estate broke away and declared itself the National Assembly. The Storming of the Bastille that July is usually marked as the revolution's start."
+  },
+  {
+    "id": 21,
+    "keywords": ["mla", "citation", "cite", "format", "english"],
+    "topic": "school",
+    "title": "MLA citations",
+    "user_prompt": "How do I cite a book in MLA format?",
+    "response": "MLA 9th edition format for a book follows this pattern: Author Last Name, First Name. Title of Book. Publisher, Year. Example: Fitzgerald, F. Scott. The Great Gatsby. Scribner, 1925. The title is italicized. If there are two authors, list both: 'Smith, John, and Jane Doe.' For three or more, use 'et al.' after the first author's name. For in-text citations, use the author's last name and page number in parentheses: (Fitzgerald 23). Always cross-check the exact format with the latest MLA Handbook or Purdue OWL, because rules update."
+  },
+  {
+    "id": 22,
+    "keywords": ["metaphor", "simile", "difference", "english", "writing"],
+    "topic": "english",
+    "title": "Metaphor vs simile",
+    "user_prompt": "What is the difference between a metaphor and a simile?",
+    "response": "A metaphor and a simile are both ways of comparing two unlike things to create a vivid image, but they do it differently. A simile uses 'like' or 'as' to make the comparison explicit: 'Her smile was like sunshine.' A metaphor states the comparison as if it were literally true, without 'like' or 'as': 'Her smile was sunshine.' Metaphors tend to feel stronger because they collapse the comparison into identity. Both are forms of figurative language and are used to make writing more memorable or to convey complex ideas through familiar images. Look for them in poetry, song lyrics, and good prose."
+  },
+
+  {
+    "id": 23,
+    "keywords": ["minecraft", "seeds", "best", "game"],
+    "topic": "games",
+    "title": "Best Minecraft seeds",
+    "user_prompt": "What are some good Minecraft seeds?",
+    "response": "Good Minecraft seeds depend on what you're looking for. For survival with plenty of resources, try seeds with mountain biomes near villages and rivers. A few popular ones over the years: '-4172144997902289642' spawns near a village with a desert temple nearby. '863861302298067308' has multiple villages close to spawn. Seeds change behavior between versions though, so always check that the seed was tested on your Minecraft version. If you want exploration, try generating a few random seeds and pick the one with the biome variety you like. Press F3 to see your coordinates and biome name."
+  },
+  {
+    "id": 24,
+    "keywords": ["pokemon", "competitive", "tier", "list", "smogon"],
+    "topic": "games",
+    "title": "Pokemon competitive tiers",
+    "user_prompt": "Can you explain the basics of competitive Pokemon tiers?",
+    "response": "Competitive Pokemon is mostly organized by Smogon, a community that builds tiers based on how often Pokemon win in tournaments. The main tiers from most to least restricted are: Ubers (anything goes), OU (Overused, the most played tier), UU (Underused), RU (Rarely used), NU (Never used), and PU (basically everything else). Pokemon move between tiers each month based on usage statistics. There are also format-specific bans: Mega evolutions, Z-moves, Dynamax, etc, depending on the generation. Most casual competitive play happens in OU or in random battles, which use a balanced random teambuilder."
+  },
+  {
+    "id": 25,
+    "keywords": ["genshin", "impact", "free", "characters", "f2p"],
+    "topic": "games",
+    "title": "Genshin F2P characters",
+    "user_prompt": "What are the best F2P characters in Genshin Impact?",
+    "response": "Genshin has several strong free-to-play characters. Xiangling is widely considered the best F2P DPS in the game, available from completing the Spiral Abyss floor 3. Bennett is an essential buffer and healer; you can get him from the standard banner. Fischl is a strong off-field Electro damage dealer. Xingqiu provides Hydro application and damage. Sucrose is a great Anemo support for grouping enemies. Combine these into teams and you can clear most content. Build them around the right artifact set (Crimson Witch for Xiangling, Noblesse Oblige for Bennett, etc.) and focus on weapon banners only for free 4 stars."
+  },
+  {
+    "id": 26,
+    "keywords": ["aim", "fps", "improve", "shooter", "game"],
+    "topic": "games",
+    "title": "Improving FPS aim",
+    "user_prompt": "How can I improve my aim in FPS games?",
+    "response": "Improving aim is mostly about consistent practice with the right habits. Set your mouse DPS and in-game sensitivity to a range you can do a 180 degree turn with one swipe across your mousepad. Lower is usually better for accuracy. Use a tool like Aim Lab or Kovaak's to do 15 to 30 minutes of aim training a day before you play. Focus on tracking, flicking, and target switching as separate drills. In actual games, place your crosshair at head level and pre-aim corners where enemies are likely to appear. Aim is half technique, half game sense, so playing the same map repeatedly also helps."
+  },
+  {
+    "id": 27,
+    "keywords": ["stardew", "valley", "first", "year", "guide"],
+    "topic": "games",
+    "title": "Stardew Valley year 1",
+    "user_prompt": "Any tips for my first year in Stardew Valley?",
+    "response": "First year in Stardew Valley is about laying foundations. Spring: plant parsnips, then potatoes, then strawberries when the Egg Festival starts (buy 20 strawberry seeds). Summer: blueberries are the big moneymaker since they yield 3 berries per harvest. Fall: cranberries, also multi-yield. Buy a coop and chicken in spring, and a barn by summer. Fish on rainy days; rainy fish like Catfish are very valuable. Save up gold for the backpack upgrade and watering can upgrades. Don't worry about romance year one. Befriend Linus, he is the friendliest. Year two opens up much more."
+  },
+  {
+    "id": 28,
+    "keywords": ["chess", "opening", "beginner", "best"],
+    "topic": "games",
+    "title": "Beginner chess openings",
+    "user_prompt": "What is the best chess opening for a beginner?",
+    "response": "For beginners, the Italian Game is one of the easiest openings to learn and play. It goes 1. e4 e5 2. Nf3 Nc6 3. Bc4. From there you develop the rest of your pieces, castle short, and play a strategic middlegame. The Italian teaches you the key opening principles: control the center, develop knights before bishops, get the king to safety. Another good option as Black is the Caro-Kann (1. e4 c6) which avoids sharp lines and gives a solid pawn structure. Avoid memorizing long lines as a beginner. Understand the ideas behind each move, then study tactics every day. Tactics, not openings, win games under 1500."
+  },
+  {
+    "id": 29,
+    "keywords": ["speedrun", "speedrunning", "game", "tips", "basics"],
+    "topic": "games",
+    "title": "Speedrunning basics",
+    "user_prompt": "How does speedrunning work?",
+    "response": "Speedrunning is the practice of completing a game as fast as possible. Each game has communities on sites like speedrun.com that maintain categories: 'Any %' lets you skip everything possible, '100 %' requires getting everything, and others vary by game. Runners share strategies, route maps, and tricks called 'glitches.' To start, pick a game you love, watch a few World Record runs on YouTube, and join its Discord. Most communities are very friendly to newcomers. Start practicing one section at a time. Many runners stream their attempts, which is also a great way to learn pacing and recovery from mistakes."
+  },
+  {
+    "id": 30,
+    "keywords": ["minecraft", "redstone", "circuits"],
+    "topic": "games",
+    "title": "Minecraft redstone",
+    "user_prompt": "How does redstone work in Minecraft?",
+    "response": "Redstone is Minecraft's electricity. It carries a signal from a power source (lever, button, pressure plate, redstone torch) to a device (door, piston, lamp). Redstone dust acts like wire and loses one signal strength per block, up to a maximum of 15 blocks. Repeaters reset the signal back to 15 and can introduce delays. Comparators read inventory states or measure signal strength. The most fun beginner project is an automatic door using pressure plates. Once you understand pulse signals, you can build clocks, sorting machines, and even small calculators. There are countless youtube tutorials specifically for redstone."
+  },
+
+  {
+    "id": 31,
+    "keywords": ["dance", "ask", "crush", "school"],
+    "topic": "social",
+    "title": "Asking someone to a dance",
+    "user_prompt": "How do I ask someone to the school dance?",
+    "response": "Keep it simple and direct. The most important thing is that the person knows you're sincere, not performing for an audience. Pick a quiet moment, maybe between classes or after a club you both attend. Make eye contact, smile, and say something like: 'Hey, would you want to go to the dance with me?' That's literally it. You don't need a 'promposal' poster or a dramatic setup. If they say yes, great. Pick a meet-up time and confirm a day before. If they say no, thank them, don't make it weird, and walk away with your head up. It really is okay either way. Most awkwardness comes from over-thinking the moment."
+  },
+  {
+    "id": 32,
+    "keywords": ["bully", "bullying", "deal", "school"],
+    "topic": "social",
+    "title": "Dealing with a bully",
+    "user_prompt": "How do I deal with a bully at school?",
+    "response": "First: this is not your fault. Bullies pick targets because of something about them, not because of something about you. Some practical things: try not to react visibly. Bullies often want a reaction to feel powerful. Walking away calmly is more effective than retorts. Stick with friends in hallways and at lunch. If it keeps happening, tell a trusted adult: a teacher, school counselor, parent, or coach. Schools are required to take bullying reports seriously. Document specific incidents (date, place, what happened) if it continues. You shouldn't have to handle this alone, and asking for help is a strength, not weakness."
+  },
+  {
+    "id": 33,
+    "keywords": ["friends", "make", "high", "school", "social"],
+    "topic": "social",
+    "title": "Making friends",
+    "user_prompt": "How do I make friends in high school?",
+    "response": "Making friends in high school is mostly about proximity plus shared interests. Join one or two clubs or activities you actually find interesting, even if you don't think you'll be 'good' at them. People are more likely to become friends if they see each other repeatedly in a low-stakes context. In conversations, ask open-ended questions and follow up on the answers. Most people enjoy talking about themselves, especially their hobbies. Don't try to be impressive. Be curious. And remember that friendships often take months to deepen. Be patient with yourself."
+  },
+  {
+    "id": 34,
+    "keywords": ["talk", "crush", "talking", "to"],
+    "topic": "social",
+    "title": "Talking to a crush",
+    "user_prompt": "How do I talk to my crush without freaking out?",
+    "response": "Almost everyone freaks out a little. The good news is that the feeling fades the more you practice. Start with very low-stakes interactions: a 'hey' in the hallway, a comment about homework, asking to borrow a pencil. Each small interaction shrinks the awkward feeling. When you do have a longer conversation, focus on listening more than talking. Ask about their day, their interests, what they're watching. People remember how you make them feel, not the clever things you say. And remember: even if a conversation feels weird in the moment, the other person is almost certainly less critical of you than you are of yourself."
+  },
+  {
+    "id": 35,
+    "keywords": ["friend", "mad", "fight", "conflict"],
+    "topic": "social",
+    "title": "My friend is mad at me",
+    "user_prompt": "My friend is mad at me and I don't know why. What should I do?",
+    "response": "First, take a beat. Don't message them ten times demanding to know what's wrong. That makes things worse. Wait a day if you can, then reach out once with something simple: 'Hey, I feel like something is off. If I did something that upset you, I want to know so I can make it right.' Then actually listen to what they say without getting defensive. Friends sometimes need a few days to cool off before they can talk about it. If they tell you what happened, apologize for the part you're actually responsible for, even if you didn't mean it that way. Intent and impact are different things."
+  },
+  {
+    "id": 36,
+    "keywords": ["confident", "confidence", "self", "esteem"],
+    "topic": "social",
+    "title": "Being more confident",
+    "user_prompt": "How do I become more confident?",
+    "response": "Confidence is less of a feeling and more of a habit. You build it by doing small things that scare you slightly, repeatedly. Raise your hand in class even when you're not sure. Speak up in group projects. Try a new club. Each small win adds up. Your body language matters too: stand up straight, keep your shoulders back, make eye contact when you talk. People react to that, and their reactions feed back into how you feel. Avoid comparing yourself to other people on social media. Most posts are highlights. You're comparing your everyday self to someone else's best moments."
+  },
+
+  {
+    "id": 37,
+    "keywords": ["anime", "beginner", "recommend", "watch"],
+    "topic": "anime",
+    "title": "Anime for beginners",
+    "user_prompt": "What anime should I watch as a beginner?",
+    "response": "Great gateway anime depends on what you like. For action and adventure: Fullmetal Alchemist Brotherhood is a 64-episode series that nearly everyone loves, regardless of how much anime they've watched. For something shorter, Demon Slayer season 1 is gorgeous and accessible. For slice-of-life: Spy x Family is fun and family-friendly. For sci-fi: Cowboy Bebop is a classic and only 26 episodes. For something Studio Ghibli, start with Spirited Away or My Neighbor Totoro. Don't worry about watching things in 'order' or being a 'real fan.' Just watch what looks fun. The hobby gets richer with time."
+  },
+  {
+    "id": 38,
+    "keywords": ["python", "hello", "world", "code", "programming"],
+    "topic": "programming",
+    "title": "Python Hello World",
+    "user_prompt": "How do I write Hello World in Python?",
+    "response": "In Python it is one line. Open a file called hello.py and put this in it:\n\nprint(\"Hello, World!\")\n\nThen run it from a terminal with python hello.py and you should see Hello, World! printed. The print function takes whatever you pass it and writes it to the screen. The double quotes mark a string, which is a sequence of characters. Python is forgiving for beginners: no semicolons, no main function, no curly braces. That's part of why it's such a popular first language. After hello world, try variables and basic input with name = input(\"What is your name? \")."
+  },
+  {
+    "id": 39,
+    "keywords": ["manga", "anime", "difference"],
+    "topic": "anime",
+    "title": "Manga vs anime",
+    "user_prompt": "What is the difference between manga and anime?",
+    "response": "Manga is Japanese comic books or graphic novels. Anime is Japanese animation, often based on manga. Many anime are adaptations of existing manga (Demon Slayer, One Piece, My Hero Academia) but some are original (Cowboy Bebop, Code Geass). Manga is read right to left, which throws off new readers for a few chapters. Manga is usually black and white and the story moves faster than the anime adaptation because animation takes longer to produce. Many fans prefer manga because adaptations sometimes cut scenes or change endings to fit a season schedule. Read manga on Mangadex or buy volumes; pirated sites hurt the industry."
+  },
+  {
+    "id": 40,
+    "keywords": ["dnd", "dungeons", "dragons", "class", "character"],
+    "topic": "tabletop",
+    "title": "D&D character classes",
+    "user_prompt": "What D&D class should I play as a beginner?",
+    "response": "For a beginner in 5th edition D&D, Fighter is the easiest to play. It has straightforward combat, doesn't need to manage spell slots, and is forgiving of mistakes. If you want a little more flavor, Champion subclass keeps things simple. If you want magic but easy: Cleric is great because most spells help allies and you mostly just heal and bless. Avoid Wizard, Druid, and Warlock for your first character. They have lots of spell choices and that can be overwhelming. Talk with your DM about what kind of story they're running. A good DM will help you build a character that fits."
+  },
+  {
+    "id": 41,
+    "keywords": ["rubik", "rubiks", "cube", "solve", "algorithm"],
+    "topic": "puzzles",
+    "title": "Solving a Rubik's cube",
+    "user_prompt": "How do I solve a Rubik's cube?",
+    "response": "The beginner method has 7 steps: 1) White cross on top, 2) White corners, 3) Middle layer edges, 4) Yellow cross on top, 5) Yellow corners' positions, 6) Yellow corners' orientations, 7) Yellow edges. Each step has one or two short algorithms (sequences of moves like R U R' U'). The best resource is JPerm's beginner method tutorial on YouTube. Practice each step until your hands know the algorithm without your brain. The first solve takes most people 20 to 30 minutes. With practice, beginners get under 2 minutes within a few weeks. Speedcubers solve in under 10 seconds using more advanced methods like CFOP."
+  },
+  {
+    "id": 42,
+    "keywords": ["star", "wars", "order", "watch", "movies"],
+    "topic": "movies",
+    "title": "Star Wars viewing order",
+    "user_prompt": "What order should I watch Star Wars?",
+    "response": "There are three main viewing orders. Release order: IV, V, VI, I, II, III, VII, VIII, IX. This is how the world experienced the films and preserves the big reveal in Empire Strikes Back. Chronological order: I, II, III, IV, V, VI, VII, VIII, IX. This is the story in timeline order but spoils a major plot point. Machete order: IV, V, II, III, VI, then sequels. This skips Episode I (which has issues) and uses II and III as a flashback after the big reveal. Most people recommend release order for first-time viewers. Add Rogue One between III and IV, and The Mandalorian after VI."
+  },
+
+  {
+    "id": 43,
+    "keywords": ["wifi", "internet", "wireless", "work", "how"],
+    "topic": "technology",
+    "title": "How WiFi works",
+    "user_prompt": "How does WiFi work?",
+    "response": "WiFi is a way of sending data between devices using radio waves instead of cables. Your router takes the wired internet signal coming into your home and converts it to a radio signal broadcast on specific frequencies, usually 2.4 GHz or 5 GHz. Your phone, laptop, or other device has a small antenna that picks up the signal and converts it back into data. The router and device negotiate which channel to use to avoid interference. Higher frequency (5 GHz) is faster but has shorter range. Lower frequency (2.4 GHz) travels farther but is slower and more crowded with other devices like microwaves and Bluetooth gadgets."
+  },
+  {
+    "id": 44,
+    "keywords": ["sky", "blue", "color", "rayleigh", "scattering"],
+    "topic": "science",
+    "title": "Why the sky is blue",
+    "user_prompt": "Why is the sky blue?",
+    "response": "The sky looks blue because of a phenomenon called Rayleigh scattering. Sunlight is made of all the colors of the visible spectrum mixed together (which is why it looks white). When sunlight enters Earth's atmosphere, it bumps into nitrogen and oxygen molecules. Shorter wavelengths of light (blue and violet) scatter more strongly than longer wavelengths (red and orange). Even though violet scatters even more than blue, our eyes are more sensitive to blue and the sun emits less violet, so the sky we perceive looks blue. At sunrise and sunset, light passes through more atmosphere, scattering away the blue and leaving red and orange behind. That is why sunsets look red."
+  },
+  {
+    "id": 45,
+    "keywords": ["osmosis", "diffusion", "biology", "cells", "explain"],
+    "topic": "science",
+    "title": "What is osmosis",
+    "user_prompt": "What is osmosis?",
+    "response": "Osmosis is the movement of water across a semi-permeable membrane from a region of higher water concentration to a region of lower water concentration. It's a special case of diffusion, but for water specifically. The membrane lets water through but blocks larger dissolved particles like sugar or salt. Imagine a bag of fresh water sitting in salty water: water moves out of the bag to balance the concentrations, even though salt cannot move in. Your cells use osmosis constantly to manage hydration. This is why eating too much salt makes you thirsty: it raises the salt concentration in your blood, and your cells lose water to balance it."
+  },
+  {
+    "id": 46,
+    "keywords": ["vaccine", "vaccination", "immune", "system", "work"],
+    "topic": "science",
+    "title": "How vaccines work",
+    "user_prompt": "How do vaccines work?",
+    "response": "A vaccine trains your immune system to recognize a specific disease without you having to actually catch it. Most vaccines contain a piece of the virus or bacteria, or a weakened version, or instructions (mRNA) that tell your cells to make a harmless piece of it. Your immune system sees this material as foreign and produces antibodies. It also remembers it through specialized memory cells. Later, if you encounter the real disease, your immune system recognizes it immediately and responds much faster than it would have otherwise. That's why vaccinated people either avoid the illness entirely or get a much milder version."
+  },
+  {
+    "id": 47,
+    "keywords": ["earthquake", "earthquakes", "tectonic", "plates", "cause"],
+    "topic": "science",
+    "title": "What causes earthquakes",
+    "user_prompt": "What causes earthquakes?",
+    "response": "Earthquakes are caused mostly by the movement of tectonic plates, the large slabs of Earth's crust that float on the molten layer below. The plates are always moving, very slowly, but they often catch on each other along fault lines. Pressure builds up over decades or centuries. When the rock can no longer hold the pressure, it suddenly slips and releases energy as seismic waves. That release is what shakes the ground. Not all earthquakes are tectonic: volcanic activity, large landslides, and even nuclear explosions can cause smaller quakes. The Richter scale (and its modern successor, the moment magnitude scale) measures the energy released."
+  },
+  {
+    "id": 48,
+    "keywords": ["electricity", "current", "electron", "circuit", "work"],
+    "topic": "science",
+    "title": "How electricity works",
+    "user_prompt": "How does electricity work?",
+    "response": "Electricity is the flow of electrons (or sometimes other charged particles) through a conductor like copper wire. When you plug a device into an outlet, you complete a circuit: a closed loop that lets electrons flow from the power source, through the device, and back to the source. The device contains components that resist the flow in useful ways. A light bulb's filament resists electron flow, which heats it up until it glows. Voltage is the 'pressure' pushing the electrons, current is the rate of flow, and resistance is how much the material slows them down. Ohm's law connects these: V = I × R."
+  },
+  {
+    "id": 49,
+    "keywords": ["dna", "genetics", "double", "helix", "biology"],
+    "topic": "science",
+    "title": "What is DNA",
+    "user_prompt": "What is DNA?",
+    "response": "DNA stands for deoxyribonucleic acid. It is the molecule that carries the instructions for building and operating every living thing. DNA is shaped like a twisted ladder, called a double helix. The 'rungs' are pairs of chemical bases: adenine pairs with thymine, and guanine pairs with cytosine. The order of these bases is a code, much like the letters in a sentence, that tells cells how to build proteins. Proteins do almost all the work in your body, from digesting food to growing hair to fighting off viruses. Each person's DNA is about 99.9% identical to every other person's. The tiny remaining differences make us individuals."
+  },
+  {
+    "id": 50,
+    "keywords": ["leaves", "fall", "autumn", "color", "change"],
+    "topic": "science",
+    "title": "Why leaves change color",
+    "user_prompt": "Why do leaves change color in fall?",
+    "response": "Leaves change color in fall because of changes inside them as days shorten. During spring and summer, leaves are full of chlorophyll, a green pigment that captures sunlight for photosynthesis. As days get shorter and temperatures drop, trees start to shut down photosynthesis to prepare for winter. Chlorophyll breaks down faster than other pigments, revealing colors that were there all along: yellows and oranges from carotenoids, and reds from anthocyanins (which are actually produced specifically in the fall in some species). When the leaf is fully ready to drop, the tree forms a special layer at the base of the stem that severs it from the branch."
+  }
+]
