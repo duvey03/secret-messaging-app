@@ -35,9 +35,12 @@ Open `http://localhost:8080`. The app loads in cover mode.
    animation.
 2. Press the Konami code with the tab focused:
    `Up Up Down Down Left Right Left Right B A`.
-3. A "Custom Instructions" modal opens. This is the PIN entry, themed to match
-   ChatGPT's real settings dialog. Type any password (first time creates the
-   PIN; subsequent unlocks require the same one). Enter to save.
+3. **First time on this device:** a 6-step walkthrough opens explaining what
+   the app actually is, then prompts you to set a PIN at step 4. Designed
+   so a recipient sent this link blind can discover and understand the
+   trick on their own.
+   **After that:** Konami opens a "Custom Instructions" modal (themed to
+   match ChatGPT's real settings dialog) for fast PIN entry.
 4. The app is unlocked, but cover view is still showing.
 5. Hover the **Share button** in the top-right of the page. Real
    conversations appear. Move the cursor away and cover returns within
@@ -237,8 +240,8 @@ __sma.isMock()
 __sma.setUseMock(false)      // switch to the real Worker
 __sma.panic()                // force lock
 
-// Wipe everything and start fresh
-['sma_cover','sma_real_blob','sma_real_iv','sma_salt']
+// Wipe everything and start fresh (re-triggers the walkthrough)
+['sma_cover','sma_real_blob','sma_real_iv','sma_salt','sma_walkthrough_done']
   .forEach(k => localStorage.removeItem(k));
 location.reload();
 ```
