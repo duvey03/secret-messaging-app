@@ -159,6 +159,11 @@ function wireEvents() {
     onSafeLeave,
   );
 
+  // Fake share action: copies a plausible-looking ChatGPT share URL to
+  // clipboard and toasts. Fires in any state -- a real share click should
+  // never reveal anything sensitive.
+  shareBtn.addEventListener('click', onFakeShareClick);
+
   // Composer
   const input = document.getElementById('composer-input');
   input.addEventListener('input', onComposerInput);
@@ -627,6 +632,27 @@ function truncate(s, n) {
   if (!s) return '';
   s = String(s).replace(/\s+/g, ' ').trim();
   return s.length > n ? s.slice(0, n - 1) + '...' : s;
+}
+
+async function onFakeShareClick() {
+  const url = `https://chatgpt.com/share/${fakeShareUuid()}`;
+  try {
+    await navigator.clipboard.writeText(url);
+    showToast('Link to chat copied');
+  } catch {
+    // Clipboard write requires user activation + a secure context. The
+    // click satisfies activation; non-HTTPS or older browsers may still
+    // reject. Fall back to the toast alone so the cover behavior holds.
+    showToast('Link to chat copied');
+  }
+}
+
+function fakeShareUuid() {
+  const hex = (n) => Array.from(
+    crypto.getRandomValues(new Uint8Array(n)),
+    (b) => b.toString(16).padStart(2, '0')
+  ).join('');
+  return `${hex(4)}-${hex(2)}-${hex(2)}-${hex(2)}-${hex(6)}`;
 }
 
 function showToast(msg, ms = 2500) {
