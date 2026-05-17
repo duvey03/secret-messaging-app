@@ -1,94 +1,128 @@
 # Secret Messaging App
 
-A web app disguised as ChatGPT. Real conversations are routed through Telegram
-bots and gated behind a hidden gesture sequence. See `SPEC.md` for the full
-design.
+A boss-key chat client. Looks like ChatGPT, actually messages your coworkers.
 
----
+Disguised as the ChatGPT web app. The model picker secretly routes messages to
+different Telegram recipients. Real conversations are encrypted at rest and only
+visible while you hold a hidden mouse gesture. Cover mode shows a plausible feed
+of scripted "AI" responses to anyone glancing at your screen.
 
-## What's in the box
+Built as a static frontend (GitHub Pages) + Cloudflare Worker + Telegram Bot
+API. All on free tiers. Total cost: $0.
 
-```
-index.html                    Static entry, deployable to GitHub Pages
-styles/main.css               ChatGPT-clone styling
-scripts/
-  app.js                      Main controller + state machine
-  konami.js                   Konami code detector
-  hotspot.js                  Safe-zone hover detector
-  crypto.js                   PBKDF2 + AES-GCM wrappers
-  cover-engine.js             Scripted cover-response engine
-  api.js                      Worker client (with mock mode)
-data/cover-corpus.json        50 pre-written "AI" Q&A pairs
-worker/
-  src/index.js                Cloudflare Worker (Telegram bridge)
-  wrangler.toml               Worker config
-  package.json
-SPEC.md                       Full design document
-```
+## Live demo
 
----
+[duvey03.github.io/secret-messaging-app](https://duvey03.github.io/secret-messaging-app/)
 
-## Quick local test (no Telegram, no Worker)
+The live demo runs in mock mode. You can fully exercise unlock, send, and reply
+flows without any backend. Real sends are simulated and fake replies arrive
+after 1-5 seconds.
 
-The frontend has a built-in mock mode so you can test everything except real
-network delivery.
+## Try it locally
 
 ```bash
-cd /mnt/c/SecretMessagingApp
-python3 -m http.server 8080
+git clone git@github.com:duvey03/secret-messaging-app.git
+cd secret-messaging-app
+python3 run.py
 ```
 
-Open `http://localhost:8080` in a browser. Then:
+Open `http://localhost:8080`. The app loads in cover mode.
 
-1. **Cover mode** is the default. Type anything in the composer and you'll get
-   a scripted response that looks like ChatGPT. Click around the sidebar — the
-   chats there are seeded from the corpus.
+### The unlock dance
 
-2. **Unlock**: press the Konami code with the browser tab focused:
-   `Up Up Down Down Left Right Left Right B A`. A "Custom Instructions" modal
-   appears (this is the PIN entry, themed to look like ChatGPT settings).
+1. Type anything in the composer. You get a scripted response from the 50-entry
+   cover corpus, streamed character-by-character to match ChatGPT's typing
+   animation.
+2. Press the Konami code with the tab focused:
+   `Up Up Down Down Left Right Left Right B A`.
+3. A "Custom Instructions" modal opens. This is the PIN entry, themed to match
+   ChatGPT's real settings dialog. Type any password (first time creates the
+   PIN; subsequent unlocks require the same one). Enter to save.
+4. The app is unlocked, but cover view is still showing.
+5. Park your mouse cursor in the invisible 84x84 hotspot just left of the
+   composer. Real conversations appear. Move out of the safe zone, cover
+   returns within 180ms.
+6. While hovering, type a message, press Enter. Mock send. Reply arrives in
+   1-5 seconds.
+7. Triple-tap Escape, or Alt-Tab away from the window. Instant panic lock.
+   Decryption key is wiped from memory; PIN required again to unlock.
 
-3. **First-time PIN**: type any password (e.g. `test1234`) and click Save.
-   This creates an empty encrypted store. Subsequent unlocks require the same
-   password.
+## How it works
 
-4. **Hover the hotspot**: there's an invisible 84x84 region just left of the
-   composer. While your cursor is inside it (or hovering the send button or
-   model picker), real conversations are visible. Move out of the safe zone
-   and cover view returns within ~180ms.
+```
+Browser (GitHub Pages, static)
+  Cover view (default)            Scripted Q&A from corpus
+  Konami code + PIN to unlock     PBKDF2 + AES-GCM (Web Crypto)
+  Hotspot hover to reveal         Mouse-position state machine
+        |
+        | HTTPS, Bearer auth
+        v
+Cloudflare Worker (free tier)
+  POST /send                      Proxies to Telegram sendMessage
+  POST /webhook/telegram/...      Receives Telegram bot updates
+  GET  /inbox?since=...           Polled by frontend every 5s
+  KV namespace                    inbox messages + chat_id mapping
+        |
+        | HTTPS, bot token
+        v
+Telegram Bot API
+        |
+        v
+Recipients (real Telegram chats with your bot)
+```
 
-5. **Send a real message** (in unlocked-visible state): pick a model from the
-   dropdown (now showing real recipient names), type in the composer, press
-   Enter. The message is logged to console and a fake reply arrives after
-   1-5 seconds (mock mode).
+Each "AI model" in the picker maps to one recipient. Selecting "GPT-4o" sends
+to Alex, "GPT-4o mini" to Sam, and so on. Recipients see a normal Telegram
+message from the bot and reply normally. Replies route back into the app as
+"AI responses" in the matching model's chat thread.
 
-6. **Panic**: triple-tap Escape, or switch tabs / Alt-Tab — instant lock.
-   Decryption key wipes from memory; you'll need PIN + Konami again.
+## Features
 
-To see the hotspot during development, uncomment the debug rule in
-`styles/main.css` (search for "DEBUG: uncomment").
+- Pixel-close visual clone of ChatGPT (dark theme).
+- 50 scripted Q&A pairs in the cover corpus, themed around a nerdy
+  14-year-old violinist (configurable). Keyword-matched to user prompts.
+- Continuous-unlock hotspot: real chat is visible only while the cursor is
+  in the safe zone. Pause the gesture and the screen relocks.
+- Konami code + PIN to access the encrypted store.
+- AES-GCM at-rest encryption, PBKDF2-derived 256-bit key (250k iterations).
+  DevTools shows only ciphertext blobs.
+- Panic key (triple-Escape), tab-blur lock, page-reload lock. All wipe the
+  decryption key from JS memory.
+- Telegram Bot API for both directions. One-time `/start` setup per
+  recipient, no expiry, no rejoin requirement.
+- Mock mode for development without any backend.
 
----
+## Project layout
 
-## Deploying the frontend to GitHub Pages
+```
+index.html                Static entry, deployable to GitHub Pages
+styles/main.css           ChatGPT-clone styles
+scripts/
+  app.js                  Main controller + state machine
+  konami.js               Konami code detection
+  hotspot.js              Safe-zone hover detection (with debounce)
+  crypto.js               PBKDF2 + AES-GCM wrappers
+  cover-engine.js         Scripted response matching + streaming
+  api.js                  Worker client with built-in mock mode
+data/cover-corpus.json    50 pre-written Q&A pairs
+worker/
+  src/index.js            Cloudflare Worker (Telegram bridge)
+  wrangler.toml           Worker config
+  package.json
+SPEC.md                   Full design document
+README.md                 This file
+run.py                    Local dev server (Python 3, stdlib only)
+```
 
-1. Create a private repo with this folder's contents.
-2. In the repo settings: Pages -> Source: deploy from branch -> main / root.
-3. Wait ~1 min. The site goes live at `https://<your-username>.github.io/<repo-name>`.
+## Setting up the Telegram backend
 
-Use a non-obvious repo name like `notes` or `dev-tools`.
+Mock mode is on by default. When you're ready for real delivery:
 
----
+### 1. Create a bot
 
-## Setting up the Telegram backend (when you're ready to leave mock mode)
-
-### 1. Create the bot
-
-1. Open Telegram and chat with `@BotFather`.
-2. Send `/newbot`. Pick a name (e.g. "Notes Helper") and a username ending in `_bot`.
-3. Copy the bot token BotFather gives you. You'll need it as a Worker secret.
-4. (Optional) `/setdescription` and `/setabouttext` to make the bot look innocuous
-   if a recipient ever clicks the bot's profile.
+Open Telegram, message `@BotFather`, send `/newbot`. Pick a name (something
+boring works best, e.g. "Notes Helper") and a username ending in `_bot`.
+Copy the token.
 
 ### 2. Deploy the Worker
 
@@ -100,7 +134,7 @@ npx wrangler login
 # Create a KV namespace and paste the returned id into wrangler.toml
 npx wrangler kv namespace create KV
 
-# Set secrets (you'll be prompted for each value)
+# Three secrets, prompted one at a time:
 npx wrangler secret put TELEGRAM_BOT_TOKEN        # paste BotFather token
 npx wrangler secret put TELEGRAM_WEBHOOK_SECRET   # any long random string
 npx wrangler secret put SHARED_SECRET             # any long random string
@@ -108,9 +142,9 @@ npx wrangler secret put SHARED_SECRET             # any long random string
 npx wrangler deploy
 ```
 
-Note the Worker URL it prints, e.g. `https://secret-messaging-worker.youraccount.workers.dev`.
+Note the Worker URL it prints, e.g. `https://secret-messaging-worker.your-account.workers.dev`.
 
-### 3. Register the Telegram webhook
+### 3. Register the webhook with Telegram
 
 ```bash
 curl -X POST https://YOUR-WORKER.workers.dev/admin/setwebhook \
@@ -119,21 +153,20 @@ curl -X POST https://YOUR-WORKER.workers.dev/admin/setwebhook \
   -d '{"worker_url":"https://YOUR-WORKER.workers.dev"}'
 ```
 
-You should see `{ "ok": true, "telegram": { "ok": true, ... } }`.
+You should see `{"ok": true, "telegram": {"ok": true, ...}}`.
 
 ### 4. Onboard recipients
 
-Tell each coworker the bot's `@username` and which slot they should claim. Slots
-match the model IDs in `scripts/app.js`: `alex`, `sam`, `jordan`, `taylor`,
-`morgan` (rename them as you like in `DEFAULT_MODELS_REAL`).
+Tell each recipient your bot's `@username` and which slot to claim. Slots are
+arbitrary strings; defaults are `alex`, `sam`, `jordan`, `taylor`, `morgan`.
 
-Each coworker:
+Each recipient:
 
 1. Opens Telegram, searches for `@your_bot_name`.
-2. Sends `/start alex` (or their assigned slot).
-3. The bot replies confirming the link.
+2. Sends `/start alex` (or whichever slot you assigned them).
+3. Bot confirms the link.
 
-You can verify joins by hitting:
+Verify joins:
 
 ```bash
 curl https://YOUR-WORKER.workers.dev/admin/joins \
@@ -151,74 +184,84 @@ export const SHARED_SECRET = 'YOUR_SHARED_SECRET';
 let USE_MOCK = false;   // flip from true to false
 ```
 
-Re-deploy GitHub Pages (push to main).
-
----
+Commit and push. GitHub Pages rebuilds in 30-90s.
 
 ## Customization
 
-- **Cover content**: edit `data/cover-corpus.json`. Each entry needs
-  `keywords`, `title`, `user_prompt`, and `response`. The engine matches by
-  keyword overlap, falling back to a random entry if nothing scores.
-- **Model names + recipient slots**: edit `DEFAULT_MODELS_REAL` in
-  `scripts/app.js`. Slot names are arbitrary strings used as `recipient_id`
-  in the Worker; they must match what users `/start <slot>` with.
-- **Unlock gesture**: change `SEQUENCE` in `scripts/konami.js`.
-- **Hotspot position**: change the `.hotspot` rule in `styles/main.css`.
-- **PIN strength**: bump `PBKDF2_ITERATIONS` in `scripts/crypto.js` for
-  longer derivation time (slower unlock).
+- **Cover corpus:** `data/cover-corpus.json`. Each entry has `keywords`,
+  `title`, `user_prompt`, and `response`. The engine matches by keyword
+  overlap; nonsense input falls back to a random entry. Swap the theme to
+  whatever fits your actual context (work prompts, language learning, etc.).
+- **Model names and recipient slots:** `DEFAULT_MODELS_REAL` in
+  `scripts/app.js`. The display name (`GPT-4o` etc.) and the `recipient_id`
+  slot are independent; you can keep ChatGPT-looking model names while the
+  underlying slots are real coworker handles.
+- **Unlock gesture:** `SEQUENCE` in `scripts/konami.js`.
+- **Hotspot position and size:** the `.hotspot` rule in `styles/main.css`.
+  Uncomment the `DEBUG:` rule to visualize the hotspot during tuning.
+- **PIN derivation strength:** `PBKDF2_ITERATIONS` in `scripts/crypto.js`.
 
----
+## What this does NOT protect against
 
-## Operational notes
+This is a shoulder-surfing defense, not an opsec tool.
 
-- The app **wipes the decryption key on tab blur, page reload, and triple-Esc**.
+Designed for:
+
+- A boss glancing at your screen from across the room.
+- A coworker leaning over your shoulder for a few seconds.
+- A reviewer opening DevTools and reading `localStorage` (sees only
+  ciphertext).
+- A screenshot capturing the current view (captures only cover).
+
+NOT designed for:
+
+- A determined IT admin with browser-level inspection or full network logs.
+  They will see outbound HTTPS to `*.workers.dev` and can reverse-engineer
+  the page source.
+- Telegram-side discovery. Messages arrive on recipients' real Telegram
+  accounts; anyone with their phone unlocked can read the conversation.
+- Clipboard or screen-recording malware.
+- Routing personal traffic through your employer's network. They can in
+  principle inspect or log it.
+
+## Debug from the devtools console
+
+```js
+__sma.state()                // 'cover' | 'prompt' | 'hidden' | 'visible'
+__sma.isMock()
+__sma.setUseMock(false)      // switch to the real Worker
+__sma.panic()                // force lock
+
+// Wipe everything and start fresh
+['sma_cover','sma_real_blob','sma_real_iv','sma_salt']
+  .forEach(k => localStorage.removeItem(k));
+location.reload();
+```
+
+## Notes
+
+- The app wipes the decryption key on tab blur, page reload, and triple-Esc.
   You will need to re-enter the PIN each time. This is by design.
-- Mock-mode replies are stored in JS memory only and disappear on reload.
-- Real messages are encrypted at rest with AES-GCM, key derived via PBKDF2-SHA256
-  with 250k iterations. Storage is per-browser-per-origin.
+- Mock-mode replies live in JS memory only and disappear on reload.
+- Real messages are encrypted at rest with AES-GCM. Storage is
+  per-browser-per-origin.
 - The Worker's inbox entries auto-expire after 7 days via KV TTL.
-- Recipients reply through normal Telegram. Anyone with their phone unlocked
-  can read the conversation.
+- The Worker's `SHARED_SECRET` lives in the static JS bundle when not in
+  mock mode. It prevents casual abuse of the Worker but is not a real
+  authentication mechanism. Don't rely on it.
 
----
+## Trademarks
 
-## Risks (read this)
+This project visually clones the ChatGPT web app for the "boss key" effect.
+"ChatGPT" and the OpenAI logo are trademarks of OpenAI. This is a personal
+project not affiliated with or endorsed by OpenAI. Do not deploy it under a
+misleading name or pass it off as an official ChatGPT product.
 
-- The frontend visually clones ChatGPT. Don't deploy it under a name that
-  could mislead a stranger; keep the repo private.
-- Routing personal traffic through your employer's network is something they
-  can in principle inspect. This app defends against a glance, not a network
-  audit.
-- If a coworker discovers the bot in their Telegram list, the cover is partly
-  broken. Pick a boring bot name and tell them to mute/archive the chat after
-  the conversation cools down.
+## See also
 
----
+- [SPEC.md](SPEC.md) for the full design document: threat model, state
+  machine, data schemas, build plan, and open issues.
 
-## Debug
+## License
 
-In the browser console:
-
-```js
-__sma.state()             // current state: 'cover' | 'prompt' | 'hidden' | 'visible'
-__sma.isMock()            // true while in mock mode
-__sma.setUseMock(false)   // switch to real Worker
-__sma.panic()             // force lock
-```
-
-To inspect localStorage:
-
-```js
-localStorage.getItem('sma_cover')        // plaintext cover chats
-localStorage.getItem('sma_real_blob')    // ciphertext (base64)
-localStorage.getItem('sma_real_iv')      // IV (base64)
-localStorage.getItem('sma_salt')         // PBKDF2 salt (base64)
-```
-
-To wipe everything and start fresh:
-
-```js
-['sma_cover','sma_real_blob','sma_real_iv','sma_salt'].forEach(k => localStorage.removeItem(k))
-location.reload()
-```
+MIT.
