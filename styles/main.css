@@ -329,23 +329,6 @@ textarea, input {
   padding: 0 16px 16px;
 }
 
-/* Invisible hotspot to the LEFT of the composer. Size matters: must be reachable without obvious mouse parking. */
-.hotspot {
-  position: absolute;
-  /* Place it just left of the composer, vertically aligned with it. */
-  left: max(16px, calc(50% - var(--max-msg-width) / 2 - 96px));
-  bottom: 70px;
-  width: 84px;
-  height: 84px;
-  /* Visually invisible but receives mouse events. */
-  background: transparent;
-  z-index: 5;
-  cursor: default;
-}
-
-/* DEBUG: uncomment to see the hotspot location during development. */
-/* .hotspot { background: rgba(255, 0, 0, 0.15); border: 1px dashed red; } */
-
 .composer {
   max-width: var(--max-msg-width);
   margin: 0 auto;

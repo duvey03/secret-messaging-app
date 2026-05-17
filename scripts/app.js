@@ -147,11 +147,14 @@ function wireEvents() {
     if (appState === STATE.COVER) openPinModal();
   });
 
-  const hotspot = document.getElementById('hotspot');
+  // The Share button is the primary unlock-hold target. The Send button and
+  // Model picker are also safe zones so the user can click them without
+  // relock flicker mid-action.
+  const shareBtn = document.getElementById('share-btn');
   const sendBtn = document.getElementById('send-btn');
   const modelPicker = document.getElementById('model-picker');
   watchSafeZone(
-    [hotspot, sendBtn, modelPicker],
+    [shareBtn, sendBtn, modelPicker],
     onSafeEnter,
     onSafeLeave,
   );

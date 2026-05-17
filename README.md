@@ -39,9 +39,11 @@ Open `http://localhost:8080`. The app loads in cover mode.
    ChatGPT's real settings dialog. Type any password (first time creates the
    PIN; subsequent unlocks require the same one). Enter to save.
 4. The app is unlocked, but cover view is still showing.
-5. Park your mouse cursor in the invisible 84x84 hotspot just left of the
-   composer. Real conversations appear. Move out of the safe zone, cover
-   returns within 180ms.
+5. Hover the **Share button** in the top-right of the page. Real
+   conversations appear. Move the cursor away and cover returns within
+   180ms. The Share button is the unlock-hold target; the Send button and
+   Model picker are also safe zones so you can click them mid-action
+   without flicker.
 6. While hovering, type a message, press Enter. Mock send. Reply arrives in
    1-5 seconds.
 7. Triple-tap Escape, or Alt-Tab away from the window. Instant panic lock.
@@ -81,8 +83,9 @@ message from the bot and reply normally. Replies route back into the app as
 - Pixel-close visual clone of ChatGPT (dark theme).
 - 50 scripted Q&A pairs in the cover corpus, themed around a nerdy
   14-year-old violinist (configurable). Keyword-matched to user prompts.
-- Continuous-unlock hotspot: real chat is visible only while the cursor is
-  in the safe zone. Pause the gesture and the screen relocks.
+- Continuous-unlock hotspot bound to the Share button: real chat is
+  visible only while the cursor is on Share (or another safe-zone
+  element). Pause the gesture and the screen relocks.
 - Konami code + PIN to access the encrypted store.
 - AES-GCM at-rest encryption, PBKDF2-derived 256-bit key (250k iterations).
   DevTools shows only ciphertext blobs.
@@ -197,8 +200,10 @@ Commit and push. GitHub Pages rebuilds in 30-90s.
   slot are independent; you can keep ChatGPT-looking model names while the
   underlying slots are real coworker handles.
 - **Unlock gesture:** `SEQUENCE` in `scripts/konami.js`.
-- **Hotspot position and size:** the `.hotspot` rule in `styles/main.css`.
-  Uncomment the `DEBUG:` rule to visualize the hotspot during tuning.
+- **Hotspot target:** the safe-zone elements are configured in
+  `wireEvents()` in `scripts/app.js` (default: Share button, Send button,
+  Model picker). Swap to other elements to change which UI element triggers
+  unlock-visible.
 - **PIN derivation strength:** `PBKDF2_ITERATIONS` in `scripts/crypto.js`.
 
 ## What this does NOT protect against
