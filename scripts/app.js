@@ -45,7 +45,60 @@ const STORAGE_KEYS = {
   COVER: 'sma_cover',
   REAL_BLOB: 'sma_real_blob',
   REAL_IV: 'sma_real_iv',
+  WALKTHROUGH_DONE: 'sma_walkthrough_done',
 };
+
+const WALKTHROUGH_STEPS = [
+  {
+    title: 'You found it',
+    text:
+`Hi. This isn't really ChatGPT.
+
+It's a covert messaging app disguised as the ChatGPT web app. The Konami code you just entered is the secret entry. The person who sent you this link wanted you to discover the trick on your own first.
+
+Let me walk you through how it works.`,
+  },
+  {
+    title: 'The cover',
+    text:
+`The chat you were typing into before is fake. The "AI" answered with one of 50 pre-written responses from a small corpus. Nothing you typed left your browser.
+
+To anyone watching, this looks like a normal ChatGPT session. Same layout, same model picker, same streaming-text animation.`,
+  },
+  {
+    title: 'The real messaging',
+    text:
+`Each "AI model" in the picker (GPT-4o, GPT-4o mini, o1, etc.) is secretly mapped to a different real person on Telegram.
+
+Switch the model in the dropdown to switch who you're chatting with. Type a message, press Enter. It arrives on their phone as a normal Telegram message. They reply on Telegram and the reply shows up here as that "model's" response.`,
+  },
+  {
+    title: 'Set your PIN',
+    text:
+`Real conversations are encrypted at rest with a password you set right now.
+
+There is no recovery. If you forget the PIN, the encrypted store is unreadable forever. Pick something you'll remember.`,
+    pinInput: true,
+  },
+  {
+    title: 'The hotspot',
+    text:
+`You're unlocked, but the screen is still showing the cover.
+
+To see real chat content, hover your mouse on the Share button in the top right of the page. Real conversations appear. Move the cursor away and cover view returns immediately.
+
+This is the "keep doing something to stay unlocked" gesture. Pause and the app re-locks the view.`,
+  },
+  {
+    title: "Panic, and you're done",
+    text:
+`If you need to lock fast: triple-tap Escape. Or Alt-Tab to another window. Or reload the page. Any of those wipe the decryption key from memory immediately.
+
+To come back: Konami code, then your PIN.
+
+That's everything. Hover Share now to see your inbox.`,
+  },
+];
 
 // === Module state ===
 
@@ -60,6 +113,8 @@ let dropdownOpen = false;
 let lastPollTs = 0;
 let pollInterval = null;
 let streamAbortController = null;
+let walkthroughStep = 0;
+let walkthroughPinAccepted = false;
 
 // === Boot ===
 
@@ -135,6 +190,10 @@ function panicLock() {
   realData = null;
   activeRealModelId = null;
   closePinModal();
+  // Tear down walkthrough without marking it done -- user can restart it.
+  document.getElementById('walkthrough-modal').classList.add('hidden');
+  walkthroughStep = 0;
+  walkthroughPinAccepted = false;
   closeDropdown();
   setState(STATE.COVER);
   render();
@@ -144,7 +203,12 @@ function panicLock() {
 
 function wireEvents() {
   watchKonami(() => {
-    if (appState === STATE.COVER) openPinModal();
+    if (appState !== STATE.COVER) return;
+    if (!localStorage.getItem(STORAGE_KEYS.WALKTHROUGH_DONE)) {
+      openWalkthrough();
+    } else {
+      openPinModal();
+    }
   });
 
   // The Share button is the primary unlock-hold target. The Send button and
@@ -197,25 +261,43 @@ function wireEvents() {
     }
   });
 
-  // Panic key: triple Esc within 1.2s
+  // Walkthrough modal
+  document.getElementById('walk-next').addEventListener('click', onWalkNext);
+  document.getElementById('walk-back').addEventListener('click', onWalkBack);
+  document.getElementById('walk-skip').addEventListener('click', onWalkSkip);
+  document.getElementById('walk-pin-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      onWalkNext();
+    }
+  });
+
+  // Panic key: triple Esc within 1.2s. While a modal is open, Esc closes it
+  // instead of counting toward panic-lock.
   let escCount = 0;
   let escTimer = null;
   window.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (document.getElementById('pin-modal').classList.contains('hidden')) {
-      escCount++;
-      if (escTimer) clearTimeout(escTimer);
-      escTimer = setTimeout(() => { escCount = 0; }, 1200);
-      if (escCount >= 3) {
-        escCount = 0;
-        if (appState !== STATE.COVER) {
-          panicLock();
-          showToast('Locked');
-        }
-      }
-    } else {
-      // Esc in modal -> close modal
+    const pinOpen = !document.getElementById('pin-modal').classList.contains('hidden');
+    const walkOpen = !document.getElementById('walkthrough-modal').classList.contains('hidden');
+    if (pinOpen) {
       closePinModal();
+      return;
+    }
+    if (walkOpen) {
+      // Esc during walkthrough = skip (but don't lose the encrypted store).
+      onWalkSkip();
+      return;
+    }
+    escCount++;
+    if (escTimer) clearTimeout(escTimer);
+    escTimer = setTimeout(() => { escCount = 0; }, 1200);
+    if (escCount >= 3) {
+      escCount = 0;
+      if (appState !== STATE.COVER) {
+        panicLock();
+        showToast('Locked');
+      }
     }
   });
 
@@ -271,10 +353,20 @@ function closePinModal() {
 
 async function onPinSubmit() {
   const input = document.getElementById('pin-input');
-  const pin = input.value;
+  const ok = await acceptPin(input.value, input);
+  if (!ok) return;
+  document.getElementById('pin-modal').classList.add('hidden');
+  showToast('Unlocked. Hover the Share button to view.');
+}
+
+// Shared logic: derives key from PIN, decrypts existing store (or creates a
+// fresh empty one), promotes app into HIDDEN state. Returns true on success,
+// false on failure (with input flashed). Both the PIN modal and the
+// walkthrough's PIN step call this.
+async function acceptPin(pin, inputForFlash) {
   if (!pin) {
-    flashInputError(input);
-    return;
+    if (inputForFlash) flashInputError(inputForFlash);
+    return false;
   }
   const salt = localStorage.getItem(STORAGE_KEYS.SALT);
   try {
@@ -285,8 +377,8 @@ async function onPinSubmit() {
       try {
         realData = await cryptoMod.decrypt(key, iv, blob);
       } catch {
-        flashInputError(input);
-        return;
+        if (inputForFlash) flashInputError(inputForFlash);
+        return false;
       }
     } else {
       realData = {
@@ -298,15 +390,92 @@ async function onPinSubmit() {
     cryptoKey = key;
     lastPollTs = realData.last_poll || 0;
     await saveReal();
-    document.getElementById('pin-modal').classList.add('hidden');
     activeRealModelId = activeRealModelId || Object.keys(realData.models)[0];
     setState(STATE.HIDDEN);
     render();
-    showToast('Unlocked. Hover the hotspot to view.');
+    return true;
   } catch (err) {
     console.error('PIN derive failed', err);
-    flashInputError(input);
+    if (inputForFlash) flashInputError(inputForFlash);
+    return false;
   }
+}
+
+// === Walkthrough ===
+
+function openWalkthrough() {
+  walkthroughStep = 0;
+  walkthroughPinAccepted = false;
+  setState(STATE.PROMPT);
+  document.getElementById('walkthrough-modal').classList.remove('hidden');
+  renderWalkthrough();
+}
+
+function closeWalkthrough(markDone = true) {
+  if (markDone) localStorage.setItem(STORAGE_KEYS.WALKTHROUGH_DONE, '1');
+  document.getElementById('walkthrough-modal').classList.add('hidden');
+  // If they made it past PIN, leave them in HIDDEN. Otherwise, drop back to COVER.
+  if (!walkthroughPinAccepted && appState === STATE.PROMPT) {
+    setState(STATE.COVER);
+  }
+}
+
+function renderWalkthrough() {
+  const step = WALKTHROUGH_STEPS[walkthroughStep];
+  document.getElementById('walk-title').textContent = step.title;
+  document.getElementById('walk-progress').textContent =
+    `${walkthroughStep + 1} / ${WALKTHROUGH_STEPS.length}`;
+  document.getElementById('walk-text').textContent = step.text;
+
+  const pinWrap = document.getElementById('walk-pin-wrap');
+  const pinInput = document.getElementById('walk-pin-input');
+  const showPin = !!step.pinInput && !walkthroughPinAccepted;
+  pinWrap.classList.toggle('hidden', !showPin);
+  if (showPin) {
+    pinInput.value = '';
+    setTimeout(() => pinInput.focus(), 50);
+  }
+
+  const backBtn = document.getElementById('walk-back');
+  const nextBtn = document.getElementById('walk-next');
+  const skipBtn = document.getElementById('walk-skip');
+
+  backBtn.disabled = walkthroughStep === 0 || walkthroughPinAccepted;
+  // Once they've committed a PIN, no more skipping the walkthrough.
+  skipBtn.disabled = walkthroughPinAccepted;
+  skipBtn.style.display = walkthroughPinAccepted ? 'none' : '';
+
+  const isLast = walkthroughStep === WALKTHROUGH_STEPS.length - 1;
+  nextBtn.textContent = isLast ? 'Done' : (showPin ? 'Save PIN' : 'Next');
+}
+
+async function onWalkNext() {
+  const step = WALKTHROUGH_STEPS[walkthroughStep];
+  if (step.pinInput && !walkthroughPinAccepted) {
+    const input = document.getElementById('walk-pin-input');
+    const ok = await acceptPin(input.value, input);
+    if (!ok) return;
+    walkthroughPinAccepted = true;
+  }
+  if (walkthroughStep === WALKTHROUGH_STEPS.length - 1) {
+    closeWalkthrough(true);
+    showToast('Hover the Share button (top right) to view.');
+    return;
+  }
+  walkthroughStep++;
+  renderWalkthrough();
+}
+
+function onWalkBack() {
+  if (walkthroughStep === 0 || walkthroughPinAccepted) return;
+  walkthroughStep--;
+  renderWalkthrough();
+}
+
+function onWalkSkip() {
+  // User dismissed the walkthrough before setting a PIN. Treat as cancel:
+  // mark walkthrough_done so they don't see it again, drop back to cover.
+  closeWalkthrough(true);
 }
 
 function flashInputError(input) {

@@ -103,6 +103,36 @@
     </main>
   </div>
 
+  <!-- Walkthrough modal, fires on FIRST successful Konami -->
+  <div class="modal-overlay hidden" id="walkthrough-modal" role="dialog" aria-modal="true">
+    <div class="modal modal-wide">
+      <header class="modal-header">
+        <h2 id="walk-title"></h2>
+        <span class="walk-progress" id="walk-progress"></span>
+      </header>
+      <div class="modal-body">
+        <p class="walk-text" id="walk-text"></p>
+        <div class="walk-pin-wrap hidden" id="walk-pin-wrap">
+          <input
+            type="password"
+            id="walk-pin-input"
+            class="modal-input"
+            placeholder="Set your PIN..."
+            autocomplete="off"
+            spellcheck="false"
+            data-form-type="other"
+          >
+          <div class="modal-hint">No recovery. Pick something you'll remember.</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="walk-skip">Skip walkthrough</button>
+        <button class="btn btn-secondary" id="walk-back">Back</button>
+        <button class="btn btn-primary" id="walk-next">Next</button>
+      </div>
+    </div>
+  </div>
+
   <!-- PIN modal, themed as "Custom Instructions" -->
   <div class="modal-overlay hidden" id="pin-modal" role="dialog" aria-modal="true">
     <div class="modal">
